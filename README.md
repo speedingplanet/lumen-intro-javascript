@@ -44,3 +44,4 @@ These are some useful links:
 * Mozilla Developer Network [HTML Home Page](https://developer.mozilla.org/en-US/docs/Web/HTML)
 * Mozilla Developer Network [CSS Home Page](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Can I use](https://caniuse.com/) feature checker
+* [Double equals ==](https://dorey.github.io/JavaScript-Equality-Table/)

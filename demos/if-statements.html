@@ -12,8 +12,42 @@
   </header>
 
   <script>
+    let x = 10;
+    if (x > 1) {
+      console.log('x is greater than 1');
+    }
 
-    
+    /*
+    JavaScript values that are false
+    false
+    0
+    ''
+    undefined
+    null
+    NaN
+    */
+
+    // Is x a positive floating point number?
+    if (x > 0) {}
+
+    // Is x non-zero (numeric), or non-false (otherwise)
+    if (x) {}
+    if (Boolean(x) === true) {}
+
+    let name = 'John';
+    // Is name.length > 0
+    if (name) {}
+
+    if (name.length > 2) {}
+
+    // Set to null if not found
+    let el = document.getElementById('el');
+    if (el) {}
+
+    let numbers = [1,2,3,4,5,6];
+    if (numbers.length) {}
+
+
   </script>
 </body>
 </html>
