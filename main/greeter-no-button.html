@@ -22,7 +22,6 @@
   <section>
     <label for="yourName">Please enter your name: </label>
     <input type="text" id="yourName">
-    <button type="button" id="greetButton">Greet me</button>
   </section>
   <!-- default display value for a section is 'block' -->
   <section style="display: none" id="greeting-container">
@@ -31,11 +30,27 @@
 
   <script>
     // document is part of the DOM (Document Object Model)
-    let greetButton = document.getElementById('greetButton');
     let input = document.getElementById('yourName');
     let span = document.getElementById('display-name');
     let container = document.getElementById('greeting-container');
 
+    // John
+
+    // keyup, others? 
+    // input.addEventListener('keyup', (event) => {
+    // input.addEventListener('change', (event) => {
+    input.addEventListener('input', (event) => {
+      // let textFieldValue = input.value;
+      let textFieldValue = event.target.value;
+      if (textFieldValue.length >= 1) {
+        span.textContent = textFieldValue;
+        container.style.display = 'block';
+      } else {
+        container.style.display = 'none';
+      }
+    });
+
+    /*
     function handleButtonClick() {
       console.log('Hello, ', input.value);
       span.textContent = input.value;
@@ -46,9 +61,10 @@
         container.style.display = 'block';
       }
     }
+    */
 
     // target.addEventListener(nameOfEvent, functionToRun)
-    greetButton.addEventListener('click', handleButtonClick);
+    // greetButton.addEventListener('click', handleButtonClick);
 
   </script>
 </body>
