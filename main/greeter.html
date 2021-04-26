@@ -15,8 +15,9 @@
     <label for="yourName">Please enter your name: </label><input type="text" id="yourName">
     <button type="button" id="greetButton">Greet me</button>
   </section>
-  <section>
-    <p>Hello, <span id="display-name">John</span></p>
+  <!-- default display value for a section is 'block' -->
+  <section style="display: none" id="greeting-container">
+    <p>Hello, <span id="display-name"></span></p>
   </section>
 
   <script>
@@ -28,6 +29,8 @@
       console.log('Hello, ', input.value);
       let span = document.getElementById('display-name');
       span.textContent = input.value;
+      // Write a conditional to display #greeting-container 
+      // if input.value has 1 or more characters
     }
 
     // target.addEventListener(nameOfEvent, functionToRun)
