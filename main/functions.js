@@ -23,7 +23,7 @@ function addAll(x = 0, y = 0, ...z) {
   let total = x + y;
   if (z.length > 0) {
     for (let pos = 0; pos < z.length; pos++) {
-      total = total + 1;
+      total = total + z[pos];
     }
   }
   return total;
