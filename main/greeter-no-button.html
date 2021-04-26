@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greeting Form</title>
+</head>
+<body>
+  <header>
+    <h1>Greeting Form</h1>
+  </header>
+
+  <!-- 
+    Remove the button
+    Have the container update automatically as you type
+    (You'll need to find the right event)
+    Only display the greeting-container when the length of the name is >=1
+    Hide the greeting-container otherwise
+   -->
+
+  <section>
+    <label for="yourName">Please enter your name: </label>
+    <input type="text" id="yourName">
+    <button type="button" id="greetButton">Greet me</button>
+  </section>
+  <!-- default display value for a section is 'block' -->
+  <section style="display: none" id="greeting-container">
+    <p>Hello, <span id="display-name"></span></p>
+  </section>
+
+  <script>
+    // document is part of the DOM (Document Object Model)
+    let greetButton = document.getElementById('greetButton');
+    let input = document.getElementById('yourName');
+    let span = document.getElementById('display-name');
+    let container = document.getElementById('greeting-container');
+
+    function handleButtonClick() {
+      console.log('Hello, ', input.value);
+      span.textContent = input.value;
+      // Write a conditional to display #greeting-container 
+      // if input.value has 1 or more characters
+
+      if (input.value.length >= 1) {
+        container.style.display = 'block';
+      }
+    }
+
+    // target.addEventListener(nameOfEvent, functionToRun)
+    greetButton.addEventListener('click', handleButtonClick);
+
+  </script>
+</body>
+</html>
