@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Events</title>
+</head>
+<body>
+   <header>
+     <h1>DOM Events</h1>
+   </header>
+
+   <div style="border: 4px black solid" id="target-div">
+     <p id="target-para">Click on this div</p>
+   </div>
+
+   <div style="margin-top: 20px"><button id="remove-events-button">Remove mouseover events</button></div>
+
+   <script>
+     function handleDivClick() {
+       console.log('You clicked on the div')
+     }
+
+     let div = document.getElementById('target-div');
+     div.addEventListener('click', handleDivClick);
+
+     function handleParagraphMouseEnter() {
+       console.log('You are over the paragraph')
+     }
+
+     let para = document.getElementById('target-para');
+     para.addEventListener('mouseover', handleParagraphMouseEnter);
+
+     let handleDivMouseOver = () => console.log('You are over the div');
+     div.addEventListener('mouseover', handleDivMouseOver)
+
+     let removeButton = document.getElementById('remove-events-button');
+     removeButton.addEventListener('click', () => {
+       para.removeEventListener('mouseover', handleParagraphMouseEnter);
+       div.removeEventListener('mouseover', handleDivMouseOver)
+     })
+
+   </script>
+</body>
+</html>
