@@ -23,14 +23,19 @@
   <script>
     // document is part of the DOM (Document Object Model)
     let greetButton = document.getElementById('greetButton');
+    let input = document.getElementById('yourName');
+    let span = document.getElementById('display-name');
+    let container = document.getElementById('greeting-container');
 
     function handleButtonClick() {
-      let input = document.getElementById('yourName');
       console.log('Hello, ', input.value);
-      let span = document.getElementById('display-name');
       span.textContent = input.value;
       // Write a conditional to display #greeting-container 
       // if input.value has 1 or more characters
+
+      if (input.value.length >= 1) {
+        container.style.display = 'block';
+      }
     }
 
     // target.addEventListener(nameOfEvent, functionToRun)
