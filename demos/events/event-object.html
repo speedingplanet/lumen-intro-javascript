@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Object</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>The Event Object</h1>
+    </header>
+    <section><button id="test-button">Click me</button></section>
+
+    <div id="outer-div" style="border: 3px green dashed">
+      <p>No event handling here</p>
+      <button id="inner-button">Click me</button>
+    </div>
+
+    <div>
+      <p>No anchor text <a href="http://www.google.com/" id="target-anchor">Anchor text</a></p>
+    </div>
+
+    <script>
+      let anchor = document.getElementById('target-anchor');
+      anchor.addEventListener('click', (event) => {
+        console.log('You clicked on the anchor');
+        event.preventDefault();
+      })
+
+      let button = document.getElementById('test-button');
+
+      button.addEventListener('click', (event) => {
+        console.log('You clicked on the button');
+        console.log('The event object:', event);
+        console.log('Event target:', event.target);
+      });
+
+      let innerButton = document.getElementById('inner-button');
+      let outerDiv = document.getElementById('outer-div');
+      innerButton.addEventListener('click', (event) => {
+        console.log('You clicked on the inner button.');
+        event.stopPropagation();
+      })
+
+      outerDiv.addEventListener('click', ()=> {
+        console.log('You clicked on the outer div');
+      })
+    </script>
+  </body>
+</html>

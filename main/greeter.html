@@ -16,7 +16,7 @@
     <button type="button" id="greetButton">Greet me</button>
   </section>
   <section>
-    <p>Hello, John</p>
+    <p>Hello, <span id="display-name">John</span></p>
   </section>
 
   <script>
@@ -24,11 +24,15 @@
     let greetButton = document.getElementById('greetButton');
 
     function handleButtonClick() {
-      console.log('You clicked on the button');
+      let input = document.getElementById('yourName');
+      console.log('Hello, ', input.value);
+      let span = document.getElementById('display-name');
+      span.textContent = input.value;
     }
 
     // target.addEventListener(nameOfEvent, functionToRun)
     greetButton.addEventListener('click', handleButtonClick);
+
   </script>
 </body>
 </html>
