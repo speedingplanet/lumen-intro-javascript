@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>If Statements</title>
 </head>
+
 <body>
   <header>
     <h1>If Statements</h1>
@@ -28,24 +30,24 @@
     */
 
     // Is x a positive floating point number?
-    if (x > 0) {}
+    if (x > 0) { }
 
     // Is x non-zero (numeric), or non-false (otherwise)
-    if (x) {}
-    if (Boolean(x) === true) {}
+    if (x) { }
+    if (Boolean(x) === true) { }
 
     let name = 'John';
     // Is name.length > 0
-    if (name) {}
+    if (name) { }
 
-    if (name.length > 2) {}
+    if (name.length > 2) { }
 
     // Set to null if not found
     let el = document.getElementById('el');
-    if (el) {}
+    if (el) { }
 
-    let numbers = [1,2,3,4,5,6];
-    if (numbers.length) {}
+    let numbers = [1, 2, 3, 4, 5, 6];
+    if (numbers.length) { }
 
     if (Date.now() > 10000) {
 
@@ -65,6 +67,22 @@
 
     let result = x > 5 ? true : false;
 
+    let y = 'blue';
+    switch (y) {
+      case 'red':
+        // do something
+        break;
+      case 'green':
+        // do something
+        break;
+      case 'blue':
+        // do something
+        break;
+      default:
+      // do something;
+    }
+
   </script>
 </body>
+
 </html>
