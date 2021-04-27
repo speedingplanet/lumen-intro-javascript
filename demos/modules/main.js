@@ -1,10 +1,6 @@
 // The main entry point for our JavaScript application.
-// import {greeting} from './utilities.js';
-import * as boris from './utilities.js';
-import {greeting as specialGreeting} from './utilities.js';
-import './imports.js';
 
+import { userPrefs, double } from './lumen-library.js';
 
-console.log('Hello from a module.');
-boris.greeting();
-specialGreeting();
+console.log('User preferences:', userPrefs);
+console.log('doubling 10 gets you', double(10));
