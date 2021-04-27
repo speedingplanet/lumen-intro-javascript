@@ -25,10 +25,19 @@
           <!-- button.btn.btn-primary -->
           <button class="btn btn-primary">Add student</button>
         </div>
+        <div class="form-group">
+          <label for="filter-name">Filter by name:</label>
+          <!-- input.form-control#filter-name -->
+          <input type="text" class="form-control" id="filter-name"><br>
+        </div>
       </div>
       <div class="col">
         <ul>
           <li>Carol</li>
+          <li>John</li>
+          <li>Brett</li>
+          <li>Matthew</li>
+          <li>Rini</li>
         </ul>
       </div>
     </section>
@@ -55,12 +64,15 @@
     let input = document.querySelector('#student-name');
     let button = document.querySelector('button');
 
+    let originalListItems = document.querySelectorAll('li');
+
     button.addEventListener('click', () => {
       if (input.value) {
         let nextItem = document.createElement('li');
         nextItem.textContent = input.value;
         input.value = '';
         list.append(nextItem);
+        originalListItems = document.querySelectorAll('li');
       } else {
         console.warn('No name entered. Please enter a name in the appropriate field.');
       }
@@ -80,6 +92,24 @@
 
       Do I need to rebuild the list?
 
+    */
+
+    let filterField = document.querySelector('#filter-name');
+    filterField.addEventListener('input', (event) => {
+      let searchText = event.target.value;
+      let listItems = Array.from(originalListItems);
+      listItems = listItems.filter(li => li.textContent.toLowerCase().includes(searchText));
+      list.replaceChildren(...listItems);
+    });
+
+    // Alternative, no filtering!
+    /*
+    filterField.addEventListener('input', (event) => {
+      let listItems = Array.from(document.querySelectorAll('li'));
+      let searchText = event.target.value;
+      // Could have toggled a style property as well
+      listItems.forEach(li => li.hidden = li.textContent.toLowerCase().includes(searchText) ? false : true )
+    });
     */
   </script>
 </body>
