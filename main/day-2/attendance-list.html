@@ -66,18 +66,6 @@
 
     let originalListItems = document.querySelectorAll('li');
 
-    button.addEventListener('click', () => {
-      if (input.value) {
-        let nextItem = document.createElement('li');
-        nextItem.textContent = input.value;
-        input.value = '';
-        list.append(nextItem);
-        originalListItems = document.querySelectorAll('li');
-      } else {
-        console.warn('No name entered. Please enter a name in the appropriate field.');
-      }
-    });
-
     /*
       Add a text field to filter the list
       The value of the field should be the filter text
@@ -95,22 +83,45 @@
     */
 
     let filterField = document.querySelector('#filter-name');
+    /*
     filterField.addEventListener('input', (event) => {
       let searchText = event.target.value;
       let listItems = Array.from(originalListItems);
       listItems = listItems.filter(li => li.textContent.toLowerCase().includes(searchText));
       list.replaceChildren(...listItems);
     });
+    */
+
+    // Virtual DOM
+
+    // your code -> vdom -> actual dom
+    // React does this (among other things)
+
+    let filterNames = () => {
+      let listParent = ul.parentElement;
+      let listItems = document.querySelectorAll('li');
+      let searchText = filterField.value.toLowerCase();
+      // Could have toggled a style property as well
+      ul.remove();
+      listItems.forEach(li => li.hidden = li.textContent.toLowerCase().includes(searchText) ? false : true );
+      listParent.append(ul);
+    }
+
+    button.addEventListener('click', () => {
+      if (input.value) {
+        let nextItem = document.createElement('li');
+        nextItem.textContent = input.value;
+        input.value = '';
+        list.append(nextItem);
+        originalListItems = document.querySelectorAll('li');
+        filterNames();        
+      } else {
+        console.warn('No name entered. Please enter a name in the appropriate field.');
+      }
+    });
 
     // Alternative, no filtering!
-    /*
-    filterField.addEventListener('input', (event) => {
-      let listItems = Array.from(document.querySelectorAll('li'));
-      let searchText = event.target.value;
-      // Could have toggled a style property as well
-      listItems.forEach(li => li.hidden = li.textContent.toLowerCase().includes(searchText) ? false : true )
-    });
-    */
+    filterField.addEventListener('input', filterNames);
   </script>
 </body>
 
