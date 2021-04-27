@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="../../css/bootstrap.css">
   <title>Student Attendance List</title>
 </head>
+
 <body>
   <main class="container">
     <header class="row">
@@ -45,9 +47,25 @@
 
       What happens if the input field is empty?
       What should happen to the input field after the name is added?
-      
-
     */
+
+    let list = document.querySelector('ul');
+
+    // similar to document.getElementById
+    let input = document.querySelector('#student-name');
+    let button = document.querySelector('button');
+
+    button.addEventListener('click', () => {
+      if (input.value) {
+        let nextItem = document.createElement('li');
+        nextItem.textContent = input.value;
+        input.value = '';
+        list.append(nextItem);
+      } else {
+        console.warn('No name entered. Please enter a name in the appropriate field.');
+      }
+    })
   </script>
 </body>
+
 </html>
