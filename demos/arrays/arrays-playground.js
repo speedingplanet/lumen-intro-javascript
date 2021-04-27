@@ -65,3 +65,15 @@ addThemAll(1, 2, 3, 4, 5, 6, 7);
 function buildASentence(word1, word2, word3) {}
 
 buildASentence(...words);
+
+// unshift for the front of the array
+words.push('foo');
+words.push('bar', 'baz');
+let additionalWords = ['alpha', 'beta'];
+words.push(...additionalWords);
+words.push(additionalWords); // Not what we want, adds the array as a single element
+
+// pop/shift to remove elements from the back/front of the array
+
+// splice(start, replacementCount, replace, replace, replace) for the middle
+words.splice(3, 1, 'huckleberries', 'gooseberries', 'some other kind of berry');

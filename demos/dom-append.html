@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/bootstrap.css">
+  <title>Appending to the DOM</title>
+</head>
+<body>
+  <main class="container">
+    <header class="row">
+      <div class="col">
+        <h1>Appending to the DOM</h1>
+      </div>
+    </header>
+    <section class="row">
+      <div class="col">
+        <ul>
+          <li>Monroe</li>
+          <li>Kansas City</li>
+          <li>Denver</li>
+        </ul>
+      </div>
+      <!-- div.col>button.btn.btn-primary -->
+      <div class="col"><button class="btn btn-primary">Add a city</button></div>
+    </section>
+  </main>
+  <script>
+    // $('div.col > button')[0]
+    let button = document.querySelector('div.col > button');
+    let list = document.querySelector('ul');
+
+    button.addEventListener('click', () => {
+      let item = document.createElement('li');
+      item.textContent = 'Nutley';
+      list.append(item);
+    })
+  </script>
+</body>
+</html>
