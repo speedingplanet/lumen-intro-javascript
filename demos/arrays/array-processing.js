@@ -52,6 +52,10 @@ wordsWithA = words.filter((word) => word.includes('a') && word.includes('es'));
 let firstMatch = words.find((word) => word.includes('ies')); // 'raspberries'
 let firstMatchIndex = words.findIndex((word) => word.includes('ies')); // 3
 
+let foundIndexA = words.indexOf('apples');
+let foundIndexB = words.lastIndexOf('bananas');
+let isItFound = words.includes('blueberries');
+
 /*
 if (word.includes('es')) {
   return index;
@@ -78,3 +82,18 @@ let reducedIndexes = words.reduce(
     currentValue.includes('es') ? [...accumulator, index] : acc,
   []
 );
+
+// Sorts words in place
+// words.sort()
+
+let sortedWords = [...words].sort();
+
+let wordsByLength = [...words].sort((first, second) => {
+  if (first.length > second.length) {
+    return -1;
+  } else if (first.length < second.length) {
+    return 1;
+  } else {
+    return 0; // Stable sort in ES2019 +
+  }
+});
