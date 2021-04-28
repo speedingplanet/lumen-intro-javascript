@@ -24,6 +24,11 @@ Object.keys(person).forEach((key) => {
   console.log(`${key}: ${person[key]}`);
 });
 
+Object.entries(person).forEach(([key, value]) => {
+  // console.log(key + ': ' + value)
+  console.log(`${key}: ${value}`);
+});
+
 // Object.keys() equivalent
 for (const key in person) {
   console.log(`${key}: ${person[key]}`);
