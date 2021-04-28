@@ -1,3 +1,3 @@
-import { users } from '@speedingplanet/rest-server';
+import { users } from '../../node_modules/@speedingplanet/rest-server/index.js';
 
 console.log('users:', users);
