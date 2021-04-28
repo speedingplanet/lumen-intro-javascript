@@ -54,4 +54,4 @@ state['some spaces'];
 state.aString;
 
 // Identifiers: $, _, or alphabetical character, followed by $, _, alphanumeric
-// $, _, $foo, _foo, foo, bar, baz, something_complicated;
+// $, _, $foo, _foo, foo, bar2, baz_, something_complicated;
