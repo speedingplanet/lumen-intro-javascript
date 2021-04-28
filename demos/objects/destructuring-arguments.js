@@ -1,25 +1,13 @@
-const defaultConfig = {
-  primaryClass: '',
-  accentClass: '',
-  fields: [],
-  labels: [],
-  height: 0,
-  width: 0,
+const person = {
+  firstName: 'John',
+  lastName: 'Paxton',
+  city: 'Nutley',
+  state: 'NJ',
+  getState() {
+    return this.state;
+  },
+  getCity: function () {
+    return this.city;
+  },
+  add: (x, y) => x + y,
 };
-
-function createForm( config ) {
-  const mergedOptions = { ...defaultConfig, ...config };
-}
-
-function createForm2( { primaryClass, accentClass, fields, ...foo } ) {
-  // Whatever
-  console.log( 'Primary class is ', primaryClass );
-}
-
-function createForm3( config ) {
-  const primaryClass = config.primaryClass;
-  const accentClass = config.accentClass;
-  const fields = config.fields;
-}
-
-createForm2( defaultConfig );
