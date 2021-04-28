@@ -32,6 +32,12 @@
     let selectValue = document.querySelector('#select-value');
     let selectLabel = document.querySelector('#select-label');
     let button = document.querySelector('button');
+    let select = document.querySelector('select');
+
+    button.addEventListener('click', () => {
+      selectValue.textContent = select.value;
+      selectLabel.textContent = select.selectedOptions[0].textContent;
+    })
   </script>
 </body>
 </html>
