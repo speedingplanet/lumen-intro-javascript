@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/bootstrap.css">
+  <style>
+    thead>tr {
+      cursor: pointer;
+    }
+  </style>
+  <title>Users table</title>
+</head>
+
+<body>
+  <main class="container">
+    <header class="row">
+      <div class="col">
+        <h1>Users table</h1>
+      </div>
+    </header>
+    <hr>
+    <section class="row">
+      <div class="col">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th data-sort-field="firstName">First Name</th>
+              <th data-sort-field="lastName">Last Name</th>
+              <th data-sort-field="address.city">City</th>
+              <th data-sort-field="address.state">State</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John</td>
+              <td>Paxton</td>
+              <td>Nutley</td>
+              <td>NJ</td>
+            </tr>
+            <tr>
+              <td>Dan</td>
+              <td>Paxton</td>
+              <td>Bloomfield</td>
+              <td>NJ</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <script src="users-table-sortable.js" type="module"></script>
+</body>
+
+</html>
