@@ -100,6 +100,7 @@ function fourthVersion() {
         let cell = document.createElement('td');
         if (typeof column.field === 'string') {
           cell.textContent = lodashGet(user, column.field);
+          // cell.textContent = user[column.field];
         } else if (typeof column.field === 'function') {
           cell.textContent = column.field(user);
         }
