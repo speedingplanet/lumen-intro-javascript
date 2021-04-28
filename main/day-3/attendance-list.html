@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../css/bootstrap.css">
+  <title>Student Attendance List</title>
+</head>
+
+<body>
+  <main class="container">
+    <header class="row">
+      <div class="col">
+        <h1>Student attendance list</h1>
+      </div>
+    </header>
+    <section class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="student-name">Please enter the student's name:</label>
+          <input type="text" class="form-control" id="student-name"><br>
+          <button class="btn btn-primary">Add student</button>
+          <button class="btn btn-secondary">Sort</button>
+        </div>
+        <div class="form-group">
+          <label for="filter-name">Filter by name:</label>
+          <input type="text" class="form-control" id="filter-name"><br>
+        </div>
+      </div>
+      <div class="col">
+        <ul>
+          <li>Carol</li>
+          <li>John</li>
+          <li>Brett</li>
+          <li>Rini</li>
+          <li>Matthew</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script>
+    let list = document.querySelector('ul');
+    let input = document.querySelector('#student-name');
+    let button = document.querySelector('button.btn-primary');
+    let sortButton = document.querySelector('button.btn-secondary');
+    let filterField = document.querySelector('#filter-name');
+    let sortAscending = true;
+
+    let toggleSortDirection = (direction) => {
+      if (direction && ['asc', 'desc'].includes(direction)) {
+        sortAscending = direction === 'asc' ? true : false;
+      } else {
+        sortAscending = !sortAscending;
+      }
+      sortButton.textContent = sortAscending ? 'Sort' : 'Reverse';
+    }
+
+    let filterNames = () => {
+      let listParent = list.parentElement;
+      let listItems = document.querySelectorAll('li');
+      let searchText = filterField.value.toLowerCase();
+      list.remove();
+      listItems.forEach(li => li.hidden = li.textContent.toLowerCase().includes(searchText) ? false : true);
+      listParent.append(list);
+    }
+
+    button.addEventListener('click', () => {
+      if (input.value) {
+        let nextItem = document.createElement('li');
+        nextItem.textContent = input.value;
+        input.value = '';
+        list.append(nextItem);
+        filterNames();
+        toggleSortDirection('asc');
+      } else {
+        console.warn('No name entered. Please enter a name in the appropriate field.');
+      }
+    });
+
+    filterField.addEventListener('input', filterNames);
+
+    sortButton.addEventListener('click', () => {
+      let listItems = Array.from(list.querySelectorAll('li'));
+      if (sortAscending) {
+        listItems.sort((itemA, itemB) => {
+          if (itemA.textContent < itemB.textContent) {
+            return -1;
+          } else if (itemA.textContent > itemB.textContent) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+      } else {
+        listItems.reverse();
+      }
+      list.replaceChildren(...listItems);
+      toggleSortDirection();
+    })
+  </script>
+</body>
+
+</html>
