@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Delegation</title>
+  <style>
+    .no-show {
+      display: none;
+    }
+
+    .show {
+      display: inline;
+    }
+
+    #cities-list>li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Event Delegation</h1>
+  <p>Working with event delegation in JavaScript</p>
+
+  <div>
+    <h2>Cities</h2>
+    <ul id="cities-list">
+      <li>New York</li>
+      <li>Boston</li>
+      <li>Chicago</li>
+      <li>San Francisco</li>
+    </ul>
+
+    <p id="message-container" hidden>
+      You clicked on <span>{cityname}</span>
+    </p>
+  </div>
+
+  <script>
+    // Returns an HTMLElement: https://developer.mozilla.org/en-us/docs/Web/API/HTMLElement
+    const para = document.getElementById('message-container');
+    let list = document.getElementById('cities-list');
+    list.addEventListener('click', function (event) {
+      const listItem = event.target;
+      const alsoList = event.currentTarget; // where the event was captured
+      console.log('Is listItem a descendant of alsoList? ', alsoList.contains(listItem));
+
+
+      para.hidden = false;
+      event.stopPropagation();
+
+      const span = para.querySelector('span');
+      span.textContent = listItem.textContent;
+
+    });
+  </script>
+</body>
+
+</html>
