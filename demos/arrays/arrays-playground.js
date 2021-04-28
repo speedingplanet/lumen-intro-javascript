@@ -52,6 +52,10 @@ let copyOfWords = [...words];
 let copyOfWords2 = new Array(...words);
 let copyOfWords3 = Array.of(...words);
 
+let otherWords = ['foo', 'bar', 'baz'];
+let combinedWords = [...words, ...otherWords];
+let concatenatedWords = words.concat(otherWords);
+
 function addThemAll(...args) {
   let total = 0;
   for (let arg of args) {
