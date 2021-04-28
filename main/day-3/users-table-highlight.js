@@ -23,6 +23,9 @@ let filterButton = document.querySelector('#filter-button');
     - Get filter text out of filterText
     - Get filter field out of filterField
 
+    - At what point can we add a class to the appropriate element
+      to indicate a match for the filter?
+      - "appropriate element" can be either the tr or the td, up to you
 
 */
 
