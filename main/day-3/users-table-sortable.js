@@ -9,7 +9,13 @@ let people = users
   .filter((user) => user.userType === 'person')
   .map((person) => {
     let [firstName, lastName] = person.displayName.split(' ');
-    return { ...person, firstName, lastName };
+    // return { ...person, firstName: firstName, lastName: lastName };
+
+    // Build a new person object with a firstName and lastName
+    // Destructure it back out to remove the displayName property
+    // (which we ignore)
+    let { displayName, ...updatedPerson } = { ...person, firstName, lastName };
+    return updatedPerson;
   });
 renderTable(people);
 
@@ -36,17 +42,32 @@ function sortTable(sortField) {
   if (sortField === lastSortField && lastSortDirection === 'asc') {
     sortDirection = 'desc';
   }
+
   people = _orderBy(people, sortField, sortDirection);
   lastSortDirection = sortDirection;
   lastSortField = sortField;
-  renderTable(people, true);
-  let header = document.querySelector(`th[data-sort-field=${sortField}]`);
-  let columnText = header.innerHTML.trim();
+  renderTable(people);
+
+  let sortHeader = document.querySelector(`th[data-sort-field="${sortField}"]`);
+  let otherHeaders = document.querySelectorAll(
+    `th:not([data-sort-field="${sortField}"])`
+  );
+
+  let columnText = sortHeader.innerHTML.trim();
   if (columnText.endsWith('⏫') || columnText.endsWith('⏬')) {
     columnText = columnText.slice(0, -1);
   }
+  sortHeader.innerHTML = `${columnText} ${
+    sortDirection === 'asc' ? '⏫' : '⏬'
+  }`;
 
-  header.innerHTML = `${columnText} ${sortDirection === 'asc' ? '⏫' : '⏬'}`;
+  otherHeaders.forEach((header) => {
+    let columnText = header.innerHTML.trim();
+    if (columnText.endsWith('⏫') || columnText.endsWith('⏬')) {
+      columnText = columnText.slice(0, -1);
+    }
+    header.innerHTML = columnText;
+  });
 }
 
 function handleClickHeader(event) {
