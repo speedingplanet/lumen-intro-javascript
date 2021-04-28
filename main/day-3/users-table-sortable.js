@@ -40,6 +40,13 @@ function sortTable(sortField) {
   lastSortDirection = sortDirection;
   lastSortField = sortField;
   renderTable(people, true);
+  let header = document.querySelector(`th[data-sort-field=${sortField}]`);
+  let columnText = header.innerHTML.trim();
+  if (columnText.endsWith('⏫') || columnText.endsWith('⏬')) {
+    columnText = columnText.slice(0, -1);
+  }
+
+  header.innerHTML = `${columnText} ${sortDirection === 'asc' ? '⏫' : '⏬'}`;
 }
 
 function handleClickHeader(event) {
