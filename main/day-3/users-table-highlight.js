@@ -72,6 +72,7 @@ function renderTable(people = []) {
 
   // Note this change
   tbody.replaceChildren(...rows);
+  if (document.getElementById('filter-text').value) handleFilterButton();
 }
 
 function sortTable(sortField) {
