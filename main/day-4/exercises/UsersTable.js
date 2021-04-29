@@ -130,5 +130,8 @@ export class UsersTable {
 
     this.tbody.replaceChildren(...rows);
     this.target.replaceChildren(this.table);
+    if (this.filterField && this.filterText) {
+      this.highlightUsers(this.filterField, this.filterText);
+    }
   }
 }

@@ -138,7 +138,9 @@ export class UsersTable {
   You can use some of the code in handleFilterButton in users-table-highlight here
   */
   highlightUsers(field, text, cssClass = 'bg-warning') {
-    this.table.querySelectorAll('tbody>tr').forEach((row) => {
+    this.filterField = field;
+    this.filterText = text;
+    this.tbody.querySelectorAll('tr').forEach((row) => {
       let id = row.dataset.rowId;
       if (_get(this.peopleById[id], field).includes(text)) {
         row.classList.add(cssClass);
@@ -167,5 +169,8 @@ export class UsersTable {
 
     this.tbody.replaceChildren(...rows);
     this.target.replaceChildren(this.table);
+    if (this.filterField && this.filterText) {
+      this.highlightUsers(this.filterField, this.filterText);
+    }
   }
 }
