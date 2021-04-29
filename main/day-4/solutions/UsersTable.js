@@ -1,31 +1,45 @@
 import _orderBy from '../../node_modules/lodash-es/orderBy.js';
 import _get from '../../node_modules/lodash-es/get.js';
 
+/*
+Build a defaultConfig with the following properties
+users, an empty array
+renderTo, the document's body (there's a shortcut for this element)
+renderNow, false
+*/
 const defaultConfig = {
   users: [],
   renderTo: document.body,
-  renderNow: true,
+  renderNow: false,
 };
 
 export class UsersTable {
   constructor(config) {
+    // Merge defaultConfig and config into a new object
+    // Extract the users, renderTo and renderNow properties
     const { users, renderTo, renderNow } = { ...defaultConfig, ...config };
 
+    // Call setPeople, passing it users
     this.setPeople(users);
 
+    // Build the table, assign it to this.table
+    // Have this.tbody point to the table body
     this.table = this.buildTable();
     this.tbody = this.table.querySelector('tbody');
+
+    // Add event handlers
     this.addEventHandlers();
 
     this.lastSortField = '';
     this.lastSortDirection = 'asc';
 
     this.target = renderTo;
+
+    // Add a condition, if renderNow is true, call this.render()
     if (renderNow) this.render();
   }
 
   setPeople(users) {
-    // Always make a shallow local copy
     this.users = [...users];
     this.peopleById = {};
     this.people = this.users
@@ -42,6 +56,14 @@ export class UsersTable {
       });
   }
 
+  /*
+  Create buildTable()
+  It should create a table, build out the thead section 
+  (which you can move here from the HTML file)
+  and add an empty tbody
+  Add the classes table, table-hover, and table-striped
+  Return the created table
+  */
   buildTable() {
     let table = document.createElement('table');
     table.innerHTML = `
@@ -65,6 +87,7 @@ export class UsersTable {
       .addEventListener('click', this.handleClickHeader);
   }
 
+  // Be sure to ask your instructor about this
   // handleClickHeader(event) {
   handleClickHeader = (event) => {
     this.sortTable(event.target.dataset.sortField);
@@ -105,6 +128,15 @@ export class UsersTable {
     });
   }
 
+  /*
+  Build highlightUsers
+  It should take three arguments
+  field -> the field to search on
+  text -> the text to search for
+  cssClass -> the highlighting class, defaulting to bg-warning
+
+  You can use some of the code in handleFilterButton in users-table-highlight here
+  */
   highlightUsers(field, text, cssClass = 'bg-warning') {
     this.table.querySelectorAll('tbody>tr').forEach((row) => {
       let id = row.dataset.rowId;
