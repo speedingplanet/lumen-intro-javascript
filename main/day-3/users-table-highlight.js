@@ -1,6 +1,8 @@
 import { users } from '../../node_modules/@speedingplanet/rest-server/index.js';
 import _orderBy from '../../node_modules/lodash-es/orderBy.js';
+import _get from '../../node_modules/lodash-es/get.js';
 
+let peopleById = {};
 let people = users
   .filter((user) => user.userType === 'person')
   .map((person) => {
@@ -11,12 +13,9 @@ let people = users
     // Destructure it back out to remove the displayName property
     // (which we ignore)
     let { displayName, ...updatedPerson } = { ...person, firstName, lastName };
+    peopleById[updatedPerson.id] = updatedPerson;
     return updatedPerson;
   });
-
-let filterField = document.querySelector('#filter-field');
-let filterText = document.querySelector('#filter-text');
-let filterButton = document.querySelector('#filter-button');
 
 /*
 - When filterButton is clicked on
@@ -35,10 +34,32 @@ let lastSortDirection = 'asc';
 let tbody = document.querySelector('tbody');
 renderTable(people);
 
+// Event Handlers
+document.querySelector('thead>tr').addEventListener('click', handleClickHeader);
+document
+  .querySelector('#filter-button')
+  .addEventListener('click', handleFilterButton);
+
+function handleFilterButton() {
+  let filterField = document.getElementById('filter-field').value;
+  let filterText = document.getElementById('filter-text').value;
+  document.querySelectorAll('tbody>tr').forEach((row) => {
+    let id = row.dataset.rowId;
+    if (_get(peopleById[id], filterField).includes(filterText)) {
+      // row.classList.add('highlight');
+      row.classList.add('bg-warning');
+    } else {
+      // row.classList.remove('highlight');
+      row.classList.remove('bg-warning');
+    }
+  });
+}
+
 // based on thirdVersion() in users-table-main.js
 function renderTable(people = []) {
   let rows = people.map((person) => {
     let row = document.createElement('tr');
+    row.setAttribute('data-row-id', person.id);
     let template = `
       <td>${person.firstName}</td>
       <td>${person.lastName}</td>
@@ -89,5 +110,3 @@ function sortTable(sortField) {
 function handleClickHeader(event) {
   sortTable(event.target.dataset.sortField);
 }
-
-document.querySelector('thead>tr').addEventListener('click', handleClickHeader);

@@ -10,6 +10,12 @@
     thead>tr {
       cursor: pointer;
     }
+
+    /* Specificity issues  */
+    .table-striped tbody tr.highlight:nth-of-type(odd),
+    .highlight {
+      background-color: yellow;
+    }
   </style>
   <title>Users table</title>
 </head>
@@ -37,19 +43,19 @@
         <div class="form-group">
           <label for="filter-text">Filter text:</label>
           <input type="text" class="form-control" id="filter-text">
-          </div>
+        </div>
       </div>
-      <div class="col-1"><div class="mt-4 pt-1"><button class="btn btn-primary" id="filter-button">Filter</button></div></div>
+      <div class="col-1">
+        <div class="mt-4 pt-1"><button class="btn btn-primary" id="filter-button">Filter</button></div>
+      </div>
     </section>
     <section class="row">
       <div class="col">
+        <!-- Also specificity issues -->
         <table class="table table-striped table-hover">
+        <!-- <table class="table"> -->
           <thead>
             <tr>
-              <!-- 
-                word-separators -> wordSeparators
-                foo-bar         -> fooBar
-              -->
               <th data-sort-field="firstName">First Name</th>
               <th data-sort-field="lastName">Last Name</th>
               <th data-sort-field="address.city">City</th>
