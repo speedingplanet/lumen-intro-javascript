@@ -110,16 +110,6 @@ export class UsersTable {
 
   You can use some of the code in handleFilterButton in users-table-highlight here
   */
-  highlightUsers(field, text, cssClass = 'bg-warning') {
-    this.table.querySelectorAll('tbody>tr').forEach((row) => {
-      let id = row.dataset.rowId;
-      if (_get(this.peopleById[id], field).includes(text)) {
-        row.classList.add(cssClass);
-      } else {
-        row.classList.remove(cssClass);
-      }
-    });
-  }
 
   render(users) {
     if (users) {
