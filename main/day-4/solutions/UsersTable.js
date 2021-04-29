@@ -1,5 +1,5 @@
-import _orderBy from '../../node_modules/lodash-es/orderBy.js';
-import _get from '../../node_modules/lodash-es/get.js';
+import _orderBy from '../../../node_modules/lodash-es/orderBy.js';
+import _get from '../../../node_modules/lodash-es/get.js';
 
 /*
 Build a defaultConfig with the following properties
