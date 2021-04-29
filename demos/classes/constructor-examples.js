@@ -32,6 +32,7 @@ class BookConstructorDefensive {
 class BookConstructorInstanceFields {
   author = '';
   title = '';
+
   constructor(author, title) {
     this.author = author;
     this.title = title;
