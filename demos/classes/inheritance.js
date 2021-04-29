@@ -1,15 +1,18 @@
 export class Vehicle {
-  static vin = 0;
+  static nextVin = 1;
 
   constructor(make = 'Default make', model = 'Default model') {
     this.make = make;
     this.model = model;
-    this.color = 'red';
-    this.speed = 0;
+    this.vin = Vehicle.nextVin++;
   }
 
   getMake() {
     return this.make;
+  }
+
+  getModel() {
+    return this.model;
   }
 
   toString() {
@@ -17,7 +20,7 @@ export class Vehicle {
   }
 }
 
-console.log(Vehicle.vin);
+console.log(Vehicle.nextVin);
 let v1 = new Vehicle();
 console.log('Vehicle details: ' + v1);
 console.log('Vehicle details: ', v1.toString());
@@ -35,6 +38,10 @@ export class Car extends Vehicle {
 
   getMake() {
     return "This car's make is " + this.make;
+  }
+
+  getColor() {
+    return this.color;
   }
 
   toString() {
