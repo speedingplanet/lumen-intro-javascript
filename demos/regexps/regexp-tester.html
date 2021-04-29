@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Regular Expression Tester</title>
+  </head>
+
+  <body style="text-align: center">
+    <h1>Regular Expression Tester</h1>
+
+    <form name="tester">
+      <table border="0" align="center">
+        <tr>
+          <td align="right">Regular expression:</td>
+          <td><input type="text" name="reValue" id="reValue" /></td>
+        </tr>
+        <tr>
+          <td align="right">String to test on:</td>
+          <td><input type="text" name="testStr" id="testStr" /></td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            Case-insensitive: <input type="checkbox" id="i" /> Global:
+            <input type="checkbox" id="g" />
+          </td>
+        </tr>
+      </table>
+
+      <p>
+        <input type="button" value="String.search()" onclick="search()" />
+        <input type="button" value="String.match()" onclick="match()" />
+        <input type="button" value="RegExp.test()" onclick="test()" />
+        <input type="button" value="RegExp.exec()" onclick="exec()" />
+        <input type="reset" value="Reset!" />
+      </p>
+
+      <hr />
+      <p>
+        Results:
+        <textarea
+          type="textarea"
+          name="results"
+          id="results"
+          rows="5"
+          cols="60"
+        ></textarea>
+      </p>
+
+      <p>
+        $1: <input type="text" name="br1" size="8" /> $2:
+        <input type="text" name="br2" size="8" /> $3:
+        <input type="text" name="br3" size="8" /> $4:
+        <input type="text" name="br4" size="8" /> $5:
+        <input type="text" name="br5" size="8" /> $6:
+        <input type="text" name="br6" size="8" /> $7:
+        <input type="text" name="br7" size="8" /> $8:
+        <input type="text" name="br8" size="8" /> $9:
+        <input type="text" name="br9" size="8" /><br />
+      </p>
+    </form>
+
+    <script src="regexp-tester.js"></script>
+  </body>
+</html>
