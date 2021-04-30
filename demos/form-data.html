@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/bootstrap.css">
+  <title>Form Data</title>
+</head>
+
+<body>
+  <main class="container">
+    <header class="row">
+      <div class="col">
+        <h1>Form Data</h1>
+      </div>
+    </header>
+    <section class="row">
+      <div class="col">
+        <form id="main-form">
+          <div class="form-group">
+            <label for="input-text-1">Text input 1</label>
+            <input type="text" id="input-text-1" name="input-text-1" class="form-control" value="text input one">
+          </div>
+          <div class="form-group">
+            <label for="input-text-1">Text input 2</label>
+            <input type="text" id="input-text-2" name="input-text-2" class="form-control" value="text input two">
+          </div>
+          <div class="form-group">
+            <label for="text-area">Textarea</label>
+            <textarea id="text-area" name="text-area" class="form-control">Text area</textarea>
+          </div>
+          <div class="form-group">
+            <label for="select">Select list</label>
+            <select id="select-single" class="custom-select" name="select-single">
+              <option value="1">One</option>
+              <option value="2" selected>Two</option>
+              <option value="3">Three</option>
+              <option value="4">Four</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="select-multiple">Multi-Select list</label>
+            <select id="select-multiple" name="select-multiple" class="custom-select" multiple size="3">
+              <option value="1" selected>One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              <option value="4" selected>Four</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="range">Range</label>
+            <input type="range" class="form-control-range" id="range" name="range" min="0" max="100">
+          </div>
+          <div class="row">
+            <div class="col">
+              <h3>Separate Checkboxes</h3>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="cb-1" value="one" id="check-1" checked>
+                <label class="form-check-label" for="check-1">
+                  Checkbox 1
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="cb-2" value="two" id="check-2">
+                <label class="form-check-label" for="check-2">
+                  Checkbox 2
+                </label>
+              </div>
+            </div>
+            <div class="col">
+              <h3>Group checkboxes</h3>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="group-checkbox" value="one" id="group-check-1">
+                <label class="form-check-label" for="group-check-1">
+                  Group Checkbox 1
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="group-checkbox" value="two" id="group-check-2" checked>
+                <label class="form-check-label" for="group-check-2">
+                  Group Checkbox 2
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="group-checkbox" value="three" id="group-check-3" checked>
+                <label class="form-check-label" for="group-check-3">
+                  Group Checkbox 3
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <div class="form-check">
+                <input class="form-radio-input" type="radio" name="group-radio" value="one" id="group-radio-1">
+                <label class="form-radio-label" for="group-radio-1">
+                  Group radio 1
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-radio-input" type="radio" name="group-radio" value="two" id="group-radio-2" checked>
+                <label class="form-radio-label" for="group-radio-2">
+                  Group radio 2
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-radio-input" type="radio" name="group-radio" value="three" id="group-radio-3">
+                <label class="form-radio-label" for="group-radio-3">
+                  Group Checkbox 3
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2"><button type="button" class="btn btn-primary">Get form data</button></div>
+        </form>
+      </div>
+      <div class="col">
+        <h3>for..of</h3>
+        <ul id="form-data-for-of"></ul>
+        <h3>keys/getAll</h3>
+        <ul id="form-data-keys-get-all"></ul>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.querySelector('button').addEventListener('click', () => {
+      let form = document.getElementById('main-form');
+      let formData = new FormData(form);
+
+      let forOfList = document.getElementById('form-data-for-of')
+      let forOfListItems = '';
+      for (let [name, value] of formData) {
+        forOfListItems += `<li>${name}: ${value}</li>`;
+      }
+      forOfList.innerHTML = forOfListItems;
+
+      let keysGetAllList = document.getElementById('form-data-keys-get-all')
+      let keysGetAllListItems = '';
+      for (let key of formData.keys()) {
+        keysGetAllListItems += `<li>${key}: ${formData.getAll(key)}</li>`;
+      }
+      keysGetAllList.innerHTML = keysGetAllListItems;
+    })
+  </script>
+</body>
+
+</html>
