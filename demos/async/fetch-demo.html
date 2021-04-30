@@ -27,20 +27,7 @@
       </div>
     </section>
   </main>
-  <script>
-    document.querySelector('button.btn.btn-primary').addEventListener('click', () => {
-      let requestPromise = fetch('http://localhost:8000/api/zippay/v1/users/114');
-
-      requestPromise.then((response) => {
-        console.log('Successful request:', response);
-        return response.json();
-      })
-        .then((bodyAsObject) => {
-          console.log('body of the response:', bodyAsObject);
-          console.log('Name of the user:', bodyAsObject.displayName)
-        })
-    })
-  </script>
+  <script src="fetch-demo.js" type="module"></script>
 </body>
 
 </html>
