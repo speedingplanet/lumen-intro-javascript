@@ -17,6 +17,14 @@ document.querySelector('button.btn-warning').addEventListener('click', () => {
     .catch((error) => console.error('Request error:', error));
 });
 
+document.querySelector('button.btn-danger').addEventListener('click', () => {
+  let errorPromise = fetchDataWithError();
+  errorPromise.then(
+    () => console.log('errorPromise success!'),
+    () => console.log('errorPromise failure!')
+  );
+});
+
 function fetchData() {
   let responsePromise = fetch('http://localhost:8000/api/zippay/v1/users/201');
   // return fetch('http://localhost:8000/api/zippay/v1/users/201');
@@ -49,4 +57,16 @@ function fetchDataWithBadResponse() {
       }
     }
   );
+}
+
+function fetchDataWithError() {
+  return fetch('http://localhost:7000/')
+    .then((response) => {
+      console.log('This will never run');
+    })
+    .catch((error) => {
+      console.error('Request error', error);
+      return Promise.reject();
+      // throw error;
+    });
 }
