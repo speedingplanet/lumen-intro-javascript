@@ -14,18 +14,39 @@ import { PeopleTable } from './PeopleTable.js';
  Don't forget to call table.render()
 */
 
-let table = new PeopleTable({
-  renderTo: document.getElementById('table-target'),
+let p1 = fetch('http://localhost:8000/api/zippay/v1/users/');
+
+let p2 = p1.then((response) => {
+  console.log('p1:response', response);
+  return response.json();
 });
-table.render();
+let p3 = p2.then((users) => {
+  console.log('p2:users', users);
+  let people = users
+    .filter((user) => user.userType === 'person')
+    .map((person) => {
+      let { displayName, address, id } = person;
+      let [firstName, lastName] = displayName.split(' ');
+      return { firstName, lastName, displayName, address, id };
+    });
+  return people;
+});
+p3.then((people) => {
+  console.log('p3: people', people);
+  let table = new PeopleTable({
+    people,
+    renderTo: document.getElementById('table-target'),
+  });
+  table.render();
 
-document
-  .querySelector('#filter-button')
-  .addEventListener('click', handleFilterButton);
+  document
+    .querySelector('#filter-button')
+    .addEventListener('click', handleFilterButton);
 
-function handleFilterButton() {
-  let filterField = document.getElementById('filter-field').value;
-  let filterText = document.getElementById('filter-text').value;
+  function handleFilterButton() {
+    let filterField = document.getElementById('filter-field').value;
+    let filterText = document.getElementById('filter-text').value;
 
-  table.highlightUsers(filterField, filterText);
-}
+    table.highlightUsers(filterField, filterText);
+  }
+});
