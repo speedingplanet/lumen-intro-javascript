@@ -78,13 +78,15 @@
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="group-checkbox" value="two" id="group-check-2" checked>
+                <input class="form-check-input" type="checkbox" name="group-checkbox" value="two" id="group-check-2"
+                  checked>
                 <label class="form-check-label" for="group-check-2">
                   Group Checkbox 2
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="group-checkbox" value="three" id="group-check-3" checked>
+                <input class="form-check-input" type="checkbox" name="group-checkbox" value="three" id="group-check-3"
+                  checked>
                 <label class="form-check-label" for="group-check-3">
                   Group Checkbox 3
                 </label>
@@ -125,9 +127,9 @@
     </section>
   </main>
   <script>
+    let form = document.getElementById('main-form');
+    let formData = new FormData(form);
     document.querySelector('button').addEventListener('click', () => {
-      let form = document.getElementById('main-form');
-      let formData = new FormData(form);
 
       let forOfList = document.getElementById('form-data-for-of')
       let forOfListItems = '';
