@@ -128,11 +128,14 @@
   </main>
   <script>
     let form = document.getElementById('main-form');
-    let formData = new FormData(form);
+    let formData;
     document.querySelector('button').addEventListener('click', () => {
 
+      formData = new FormData(form);
       let forOfList = document.getElementById('form-data-for-of')
       let forOfListItems = '';
+
+      // same as for(let entry of formData.entries())
       for (let [name, value] of formData) {
         forOfListItems += `<li>${name}: ${value}</li>`;
       }
@@ -140,7 +143,7 @@
 
       let keysGetAllList = document.getElementById('form-data-keys-get-all')
       let keysGetAllListItems = '';
-      for (let key of formData.keys()) {
+      for (let key of new Set(formData.keys())) {
         keysGetAllListItems += `<li>${key}: ${formData.getAll(key)}</li>`;
       }
       keysGetAllList.innerHTML = keysGetAllListItems;
