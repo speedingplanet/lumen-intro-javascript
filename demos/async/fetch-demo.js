@@ -20,3 +20,9 @@ function fetchData() {
   // jsonPromise.then((user) => console.log('Hello,', user.displayName));
   return jsonPromise;
 }
+
+function fetchDataTerse() {
+  return fetch(
+    'http://localhost:8000/api/zippay/v1/users/201'
+  ).then((response) => response.json());
+}
